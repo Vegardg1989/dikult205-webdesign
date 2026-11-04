@@ -1,0 +1,271 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 2.5em;
+}
+
+
+/********************************
+  *Paragrah and Headings style*
+  *******************************/
+
+p {
+	font-size: 1.25em;
+	padding: 0.3em;
+}
+
+h2 {
+	font-size: 1.3em;
+	text-align: left;
+}
+h3 {
+	font-size: 1.1em;
+}
+
+/******
+  *Grid
+  ******/
+
+.container-landingpage {
+	display: grid;
+	grid-template-areas: "header" "content" "aside" "footer" "navigaton";
+}
+
+header {
+	grid-area: header;
+  display: grid;
+  grid-template-areas: "logo" "title" "assosiates";
+	padding: 0em 1.5em;
+	margin-bottom: 4em;
+	line-height: 2em;
+	width: 100%;
+	color: black;
+}
+.icon-header {
+  grid-area: logo;
+  padding: 0em 1em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20em;
+}
+.header-title{
+  grid-area: title;
+  text-align: center;
+  font-family: 'Audiowide', cursive;
+}
+.header-title p,span {
+  padding: 0.2em;
+  margin: 0;
+  color: red;
+  font-style: italic;
+}
+h1 {
+	font-size: 1.5em;
+  padding: 1em;
+  margin-bottom: 0;
+  line-height: 1.3em;
+  font-size: 2em;
+}
+.assosiates{
+  grid-area: assosiates;
+	font-family: 'Audiowide', cursive;
+}
+.assosiates h2 {
+text-align: center;
+margin-top: 2.3em;
+}
+.assosiates-icons{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 10em;
+	padding: 0em 1em;
+	height: auto;
+}
+
+@media screen and (min-width: 1024px) {
+	header {
+		grid-template-columns: 1.5fr 2fr 2fr;
+		grid-template-areas: "logo title assosiates";
+	}
+  .icon-header {
+    grid-area: logo;
+    padding: 1em;
+    width: 20em;
+  }
+
+  h1 {
+    margin-top: 0.5em;
+  }
+}
+
+
+/***********************
+  *Content Landingpage*
+ ***********************/
+
+.content-landingpage {
+	grid-area: content;
+	padding: 2.5em;
+  padding-top: 0;
+}
+.aside-landingpage {
+	grid-area: aside;
+	margin: 2em 1em;
+	padding: 0.5em;
+}
+.aside-landingpage span {
+	font-style: normal;
+	font-size: 1.5em;
+	color: black;
+
+}
+#gunrange-landingpage {
+	width: 100%;
+	height: auto;
+}
+
+@media screen and (min-width: 860px) {
+	.container-landingpage {
+		display: grid;
+		grid-template-columns: 2fr 1.5fr;
+		grid-template-areas: "header header" "content content" "aside aside" "footer footer" "navigaton navigaton";
+	}
+	.aside-landingpage {
+		margin: 5em 2em 2em 2em;
+	}
+
+}
+@media screen and (min-width: 1280px) {
+	.container-landingpage {
+		display: grid;
+		grid-template-columns: 2fr 1.7fr;
+		grid-template-areas: "header header" "content aside" "footer footer" "navigaton navigaton";
+	}
+	.aside-landingpage {
+		margin: 4em 3em 2em 2em;
+	}
+}
+
+footer {
+	grid-area: footer;
+	display: grid;
+	grid-template-areas: "box1" "box2" "box3";
+	width: 100%;
+	bottom: 0;
+	margin-top: 2em;
+	padding: 20px;
+	text-align: center;
+	line-height: 1em;
+  background-color: #FFD700;
+	color: black;
+}
+.box1 {
+	grid-area: box1;
+	padding: 1em;
+}
+.box2 {
+	grid-area: box2;
+	padding: 1em;
+}
+.box3 {
+	grid-area: box3;
+	display: grid;
+	padding: 1em;
+	text-align: center;
+}
+footer h4 {
+	font-family: 'Orbitron', sans-serif;
+}
+footer a {
+	color: black;
+}
+footer a:hover {
+	background-color: red;
+	color: black;
+}
+.footer-icons {
+	width: 60px;
+	height: auto;
+	margin: 2px;
+	padding: 2px;
+}
+@media screen and (min-width: 1024px) {
+	footer {
+		grid-template-columns: 1.5fr 1.5fr 1.2fr;
+		grid-template-areas: "box1 box2 box3";
+	}
+}
+@media screen and (min-width: 500px) {
+	header, footer {
+		grid-column: 1 / -1;
+		clear: both;
+	}
+}
+
+/*****************
+    *Navigation*
+ *****************/
+
+ nav {
+   grid-area: navigaton;
+ }
+
+ .navigaton-bar {
+  overflow: hidden;
+  background-color: #FFD700;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.navigaton-bar a {
+  float: left;
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigaton-bar a:hover {
+  background-color: red;
+  color: black;
+}
+
+.navigaton-bar a.active {
+  background-color: #333;
+  color: #FFD700;
+}
+
+.navigaton-bar .icon {
+  display: none;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 860px) {
+  .navigaton-bar a:not(:first-child) {display: none;}
+  .navigaton-bar a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .navigaton-bar.responsive .icon {
+    position: absolute;
+    right: 0;
+    bottom:0;
+  }
+  .navigaton-bar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+}

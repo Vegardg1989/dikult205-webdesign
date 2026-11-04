@@ -1,0 +1,230 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 2.5em;
+}
+
+
+/********************************
+  *Paragrah and Headings style*
+  *******************************/
+
+p {
+	font-size: 1.25em;
+	padding: 0.3em;
+}
+h2 {
+	font-size: 1.3em;
+	text-align: left;
+	color: red;
+	font-family: 'Graduate', cursive;
+}
+h3 {
+	font-size: 1.1em;
+}
+
+/******
+  *Grid
+  ******/
+
+.container-landingpage {
+	display: grid;
+	grid-template-areas: "header" "navigaton" "content" "aside" "footer";
+}
+
+header {
+	grid-area: header;
+	display: grid;
+	grid-template-areas: "logo" "title";
+	padding: 2.2em;
+	line-height: 2em;
+	width: 100%;
+	color: black;
+}
+.icon-header {
+	grid-area: logo;
+  padding: 0em 1em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20em;
+}
+.header-title{
+  grid-area: title;
+  text-align: center;
+  font-family: 'Graduate', cursive;
+}
+h1 {
+	font-size: 1.5em;
+  padding: 1em;
+  margin-bottom: 0;
+  line-height: 1.3em;
+  font-size: 1.8em;
+}
+@media screen and (min-width: 1024px) {
+	header {
+		grid-template-columns: 1.2fr 1.5fr 1.2fr;
+		grid-template-areas: "logo title assosiates";
+	}
+}
+
+
+/*****************
+    *Navigation*
+ *****************/
+
+nav {
+	grid-area: navigaton;
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,154,184,1) 0%, rgba(7,113,187,1) 100%);
+	display: flex;
+	direction: rtl;
+	justify-content: center;
+	flex-direction: column;
+	padding: .3rem;
+}
+.nav-links {
+	display: none;
+}
+nav a {
+	color: black;
+	padding: 10px 20px;
+	font-family: garamond;
+	text-decoration: none;
+	text-align: center;
+}
+nav a:hover {
+	background-color: white;
+	color: black;
+}
+
+.hamburger {
+	width: 60px;
+	height: auto;
+	padding: 0.3rem;
+}
+.hamburger img {
+	padding-right: 10px;
+}
+#menu-toggle {
+	display: none;
+}
+#menu-toggle:checked~.nav-links {
+	display: flex;
+	flex-direction: column;
+}
+/***************************************
+  *Navigation for screens above 860 px*
+ **************************************/
+
+@media screen and (min-width: 1024px) {
+	.nav-links {
+		direction: ltr;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+	}
+	.hamburger {
+		display: none;
+	}
+}
+
+/***********************
+  *Content Landingpage*
+ ***********************/
+
+.content-landingpage {
+	grid-area: content;
+	padding: 2em;
+}
+.aside-landingpage {
+	grid-area: aside;
+	margin: 2em 1em;
+	padding: 0.5em;
+}
+#image-landingpage {
+	width: 100%;
+	height: auto;
+}
+
+@media screen and (min-width: 860px) {
+	.container-landingpage {
+		display: grid;
+		grid-template-columns: 2fr 1.7fr;
+		grid-template-areas: "header header" "navigaton navigaton"  "content content" "aside aside" "footer footer";
+	}
+	.aside-landingpage {
+		margin: 5em 2em 2em 2em;
+	}
+
+}
+@media screen and (min-width: 1280px) {
+	.container-landingpage {
+		display: grid;
+		grid-template-columns: 2fr 1.7fr;
+		grid-template-areas: "header header" "navigaton navigaton" "content aside" "footer footer";
+	}
+	.aside-landingpage {
+		margin: 5em 3em 2em 2em;
+	}
+}
+
+footer {
+	grid-area: footer;
+	display: grid;
+	grid-template-areas: "box1" "box2" "box3";
+	width: 100%;
+	bottom: 0;
+	margin-top: 2em;
+	padding: 20px;
+	text-align: center;
+	line-height: 1em;
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,154,184,1) 0%, rgba(7,113,187,1) 100%);
+	color: black;
+}
+.box1 {
+	grid-area: box1;
+	padding: 1em;
+}
+.box2 {
+	grid-area: box2;
+	padding: 1em;
+}
+.box3 {
+	grid-area: box3;
+	display: grid;
+	padding: 1em;
+	text-align: center;
+}
+footer h4 {
+	font-family: 'Orbitron', sans-serif;
+}
+footer a {
+	color: black;
+}
+footer a:hover {
+	background-color: #ddd;
+	color: black;
+}
+.footer-icons {
+	width: 60px;
+	height: auto;
+	margin: 2px;
+	padding: 2px;
+}
+@media screen and (min-width: 1024px) {
+	footer {
+		grid-template-columns: 1.5fr 1.5fr 1.2fr;
+		grid-template-areas: "box1 box2 box3";
+	}
+}
+@media screen and (min-width: 500px) {
+	header, nav, footer {
+		grid-column: 1 / -1;
+		clear: both;
+	}
+}
