@@ -35,6 +35,12 @@ class RetrobaserDemoTests(TestCase):
                              {"email": "player@retrobaser.demo", "pass": "player123", "next": "https://evil.example/"})
         self.assertEqual(r["Location"], reverse("retrobaser:index"))
 
+    def test_login_follows_local_next(self):
+        self.client.get(reverse("retrobaser:index"))
+        r = self.client.post(reverse("retrobaser:login"),
+                             {"email": "player@retrobaser.demo", "pass": "player123", "next": "/demo/retrobaser/games/"})
+        self.assertEqual(r["Location"], "/demo/retrobaser/games/")
+
     def test_rating_insert_then_update(self):
         self.client.get(reverse("retrobaser:index"))
         self.login()

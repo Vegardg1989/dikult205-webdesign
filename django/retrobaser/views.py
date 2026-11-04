@@ -19,7 +19,6 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 
 from . import seed
@@ -38,6 +37,11 @@ SORTS = {
 
 
 # --- helpers -------------------------------------------------------------
+
+def _safe_next(nxt):
+    """Only follow `next` back into this demo (no open redirects)."""
+    return nxt.startswith("/demo/retrobaser/") and "//" not in nxt and "\\" not in nxt
+
 
 def demo_view(func):
     """Reset stale demo data, then attach the logged-in member (or None)."""
@@ -128,7 +132,7 @@ def login(request):
         request.session.cycle_key()
         request.session[SESSION_KEY] = member.pk
         nxt = request.POST.get("next") or ""
-        if url_has_allowed_host_and_scheme(nxt, allowed_hosts={request.get_host()}):
+        if _safe_next(nxt):
             return redirect(nxt)
         return redirect("retrobaser:index")
     messages.error(request, "The e-mail address and password do not match.")

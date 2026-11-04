@@ -9,7 +9,6 @@ from functools import wraps
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 
 from . import seed
@@ -18,6 +17,11 @@ from .models import Member, NewsPost, Range, RangeRating
 SESSION_KEY = "rhetorics_member_id"
 PICTURES = ["", "range1.jpg", "range2.jpg", "cons.jpg", "eagle1.jpg", "chicago1.jpg"]
 MAX_POSTS = 40
+
+
+def _safe_next(nxt):
+    """Only follow `next` back into this demo (no open redirects)."""
+    return nxt.startswith("/demo/rhetorics/") and "//" not in nxt and "\\" not in nxt
 
 
 def demo_view(func):
@@ -85,7 +89,7 @@ def login(request):
     else:
         messages.error(request, "The e-mail address and password do not match.")
     nxt = request.POST.get("next") or ""
-    if url_has_allowed_host_and_scheme(nxt, allowed_hosts={request.get_host()}):
+    if _safe_next(nxt):
         return redirect(nxt)
     return redirect("rhetorics:world2_home")
 
