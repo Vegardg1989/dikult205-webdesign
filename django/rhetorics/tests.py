@@ -49,8 +49,8 @@ class RhetoricsDemoTests(TestCase):
     def test_world2_nav_and_snapshot(self):
         r = self.client.get(reverse("rhetorics:world2_home"))
         self.assertContains(r, 'id="craNavbar"')
-        self.assertContains(r, "nv.js")
-        self.assertContains(r, "snapshots/world2-home.jpg")
+        self.assertContains(r, "rhetorics/js/nv")
+        self.assertContains(r, "snapshots/world2-home")
         self.assertContains(r, "Not affiliated")
         self.login()
         r = self.client.get(reverse("rhetorics:world2_home"))
