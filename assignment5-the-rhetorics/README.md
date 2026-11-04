@@ -18,7 +18,7 @@ A Chicago Tribune article from January 2020: a one-year-old was critically wound
 | Main argument | Science and data can reduce gun violence: youth job programmes and precision policing work. | The Second Amendment protects the right to bear arms. The answer is education and gun safety, not gun control. |
 | How the facts are used | The shooting is one example of a wider urban problem the lab's data can help solve. The father's lie wastes police resources. | People commit crimes whether they own guns or not. Law-abiding owners should not lose their rights because of others' actions. |
 | Main persuasive tools | Statistics and infographics (logos), links to the parent organisation Urban Labs and news coverage (ethos), endorsement from investors like Magic Johnson (social proof) | The eagle, the flag and the stars (pathos: national pride), the logic of constitutional rights, member ratings of gun ranges |
-| Files | `world1/home.php`, `world1/research.php` (April 2020 draft) | `world2/` (restored in 2026, see below) |
+| Files | `world1/` (restored in 2026, see below) | `world2/` (restored in 2026, see below) |
 
 ## What I built
 
@@ -30,9 +30,14 @@ A Chicago Tribune article from January 2020: a one-year-old was critically wound
 
 ## Restoration (2026)
 
-In 2026 I restored World 2 with help from Claude, Anthropic's AI assistant, so the repository shows the site I actually submitted and not only the draft. Every restored file starts with a comment that says so.
+In 2026 I restored both worlds with help from Claude, Anthropic's AI assistant, so the repository shows the site I actually submitted and not only the draft. Every restored file starts with a comment that says so.
 
 - **Sources:** the screenshots in my June 2020 exam portfolio, the April 2020 draft, and the login system I wrote for Retrobaser ([assignment 8](../assignment8-retrobaser/)). World 2 used the same login code.
+- **What was restored in `world1/`:**
+  - `index.php` (the draft's `home.php`, renamed as in the submitted version), `research.php` and the new `crime_reduction.php`
+  - the header from the screenshot: my Crime Lab Project logo on the left, the parent organisation on the right
+  - the RESEARCH / CRIME REDUCTION menu and the home layout with the image on the left
+  - the full texts in place of the draft's placeholder text, and the heat-and-shootings chart redrawn in HTML from the 2020 figures
 - **What was restored in `world2/`:**
   - the menu at the bottom of the page, opened on phones by the original `nv.js`
   - sign-up with e-mail activation, login, logout, forgot password and change password
@@ -42,8 +47,8 @@ In 2026 I restored World 2 with help from Claude, Anthropic's AI assistant, so t
   - the database schema in `sql/cra.sql`
 - **What I changed on purpose:**
   - All SQL now uses prepared statements, and all output is escaped with `htmlspecialchars`.
-  - The real logos (the Illinois State Rifle Association emblem and the NRA partner badge) are replaced with fictional logos of the same size. The CRA wordmark is my own 2020 design.
-- **Still the draft:** World 1 (`world1/`) is the April 2020 draft. The live demo shows the submitted version of World 1.
+  - The volunteers photo on World 1's home page was not mine, so the restored page uses the Chicago photo from the draft.
+  - The real logos (Urban Labs, the Illinois State Rifle Association emblem and the NRA partner badge) are replaced with fictional logos of the same size. The Crime Lab Project logo and the CRA wordmark are my own 2020 designs.
 - **The untouched draft** is in the first commit, [f27e73a](https://github.com/Vegardg1989/dikult205-webdesign/tree/f27e73a/assignment5-the-rhetorics).
 - **The original logos** are still in `icons/` as part of the 2020 archive, but the restored pages don't use them.
 
@@ -74,7 +79,7 @@ I wrote a 7-page analysis using classical rhetoric (Aristotle's logos, ethos and
 ```bash
 cd assignment5-the-rhetorics
 php -S localhost:8000
-# open http://localhost:8000/world1/home.php and http://localhost:8000/world2/index.php
+# open http://localhost:8000/world1/index.php and http://localhost:8000/world2/index.php
 ```
 
 World 1 needs no database. For World 2, create a MySQL database, load `world2/sql/cra.sql`, then copy `world2/mysqli_connect.example.php` to `world2/mysqli_connect.php` and fill in your own values. The live demo of both worlds is the Django version: https://www.vegardgundersen.com/demo/rhetorics/

@@ -228,3 +228,22 @@ footer a:hover {
 		clear: both;
 	}
 }
+
+
+/*****************************************************************
+  *Added in the 2026 restoration: header, home layout and chart*
+ *****************************************************************/
+.w1 header { align-items: center; }
+.assosiates { grid-area: assosiates; text-align: center; }
+.assosiates img { width: 18em; max-width: 100%; height: auto; }
+.nav-links a { color: #fff; font-family: 'Graduate', serif; }
+.nav-links a:hover { color: #000; }
+@media screen and (min-width: 860px) {
+	.w1-home { grid-template-areas: "header header" "navigaton navigaton" "aside content" "footer footer"; }
+}
+.chart { font-family: Arial, Helvetica, sans-serif; margin: 1.5em 0; line-height: 1.4; }
+.chart h3 { margin: 0; font-size: 1.3em; }
+.chart .sub { color: #555; margin: 0.2em 0 0.8em; padding: 0; }
+.chart .row { display: grid; grid-template-columns: 6em 1fr; align-items: center; gap: 0.6em; margin: 0.35em 0; }
+.chart .bar { background: #7d2a4f; color: #fff; text-align: right; padding: 0.25em 0.5em; }
+.chart .src { font-size: 0.9em; color: #555; padding: 0; }
