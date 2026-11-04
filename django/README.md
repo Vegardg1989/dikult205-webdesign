@@ -38,14 +38,17 @@ The star thresholds, sort options, page size of 5 in the user table and the yes/
 
 ## The Rhetorics
 
-- **World 1, The Crime Lab Project:** home and research pages. The research page now has real content in place of the early version's placeholder text.
+Parts of the original code are lost: only my rough draft from April 2020 survived. The submitted version was restored in 2026 with help from Claude, Anthropic's AI assistant, from the screenshots in my exam portfolio. Each world page has a **See the 2020 original** link that opens those screenshots.
+
+- **World 1, The Crime Lab Project:** home, research and crime reduction pages, laid out like the submitted version, with the RESEARCH / CRIME REDUCTION menu.
 - **World 2, Chicago Rifle Association:**
-  - home page with a member login
+  - the menu at the bottom of the page (CRA, News, Ranges, Signup, Login), opened on phones by the original `nv.js`
+  - the same login system as Retrobaser: sign-up, login, forgot password, change password, admin and member levels
   - news that admins can write, edit and delete
   - gun ranges that members rate from one to five stars
 - **Landing page:** explains the assignment and compares how each world uses the facts of the news story.
 
-All organisations, ranges and posts are fictional. The live demo leaves out the real organisations' logos that the 2020 student version used (the University of Chicago Crime Lab, the NRA and the Illinois State Rifle Association), so it can't be mistaken for those organisations.
+All organisations, ranges and posts are fictional, and the demo is not affiliated with any organisation. The 2020 student version used real organisations' logos (Urban Labs, the NRA and the Illinois State Rifle Association). The demo replaces them with fictional logos of the same size, so it can't be mistaken for those organisations. The Crime Lab Project logo and the CRA wordmark are my own designs.
 
 ## Demo rules
 
@@ -64,5 +67,5 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 # http://127.0.0.1:8000/demo/retrobaser/ and http://127.0.0.1:8000/demo/rhetorics/
-python manage.py test         # 15 tests
+python manage.py test
 ```

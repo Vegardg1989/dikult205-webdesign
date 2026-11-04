@@ -1,0 +1,24 @@
+{% extends "rhetorics/world2/base.html" %}{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<main class="content-landingpage">
+  {% if messages %}<ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  <h2>Login</h2>
+  <form class="cra-form" method="post" action="{% url 'rhetorics:login' %}">{% csrf_token %}
+    <input type="hidden" name="next" value="{% url 'rhetorics:world2_home' %}">
+    <label for="email">E-mail</label><input type="email" id="email" name="email" autocomplete="username" required>
+    <label for="password">Password</label><input type="password" id="password" name="password" autocomplete="current-password" required>
+    <button type="submit">Login</button>
+  </form>
+  <p><a href="{% url 'rhetorics:forgot_password' %}">Forgot Password</a></p>
+  <div class="login-hints">
+    <p><strong>Demo logins</strong> (the data resets every 24 hours):</p>
+    <ul>{% for l in demo_logins %}<li>{{ l.role }}: <code>{{ l.email }}</code> / <code>{{ l.password }}</code></li>{% endfor %}</ul>
+    <p>The admin can write, edit and delete news. Members can rate the ranges.</p>
+  </div>
+</main>
+<aside class="aside-landingpage">
+  <img alt="{{ aside_alt|default:'A hunter with a cap aiming a rifle outdoors' }}" id="gunrange-landingpage" src="{% static 'rhetorics/pictures/' %}{{ aside_img|default:'range2.jpg' }}">
+  <p><q>A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+</aside>
+{% endblock %}

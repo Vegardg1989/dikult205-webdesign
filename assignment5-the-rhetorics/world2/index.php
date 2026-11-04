@@ -1,13 +1,14 @@
-<?php
+<?php /* Restored in 2026 by Vegard Gundersen with help from Claude (Anthropic's AI assistant).
+ * The 2020 server code was lost; only the April 2020 rough draft survived. This file rebuilds the
+ * submitted version from the June 2020 portfolio screenshots and reuses the Retrobaser login system. */
+$page_title = 'Home';
 include('templates/header.php');
- ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+?>
 	<main class="content-landingpage">
+		<?php include('templates/messages.inc.php');
+		if (isset($_SESSION['username'])) {
+			echo '<p>Welcome ' . h($_SESSION['username']) . '</p>';
+		} ?>
 		<article>
 			<h2>Welcome to the CRA</h2>
 			<p>We are here to support and protect the rights and freedoms, which the
@@ -24,18 +25,12 @@ include('templates/header.php');
 			organization is dedicated to educating citizens about the lawful use and
 			possession of firearms.</p>
 			<p>We arrange safety courses for gun owners in the hope of averting such
-			unfortunate incidents in the future. The association, therefore, supports
-			the goals, purposes, and objectives of the National Rifle Association of
-			America.</p>
+			unfortunate incidents in the future.</p>
 		</article>
 	</main>
 	<aside class="aside-landingpage">
-		<img alt="Gun Range" id="gunrange-landingpage" src="../pictures/range2.jpg">
-		<p><q>A well regulated Militia, being necessary to the security of a free
-		State, the right of the people to keep and bear Arms, shall not be
-		infringed.</q></p><span>The Second Amendment</span>
-	</aside><?php
-	        include('templates/footer.php');
-	         ?>
-</body>
-</html>
+		<img alt="<?php echo isset($aside_alt) ? $aside_alt : 'A hunter aiming a rifle outdoors'; ?>" id="gunrange-landingpage" src="../pictures/<?php echo isset($aside_img) ? $aside_img : 'range2.jpg'; ?>">
+		<p><q>A well regulated Militia, being necessary to the security of a free State,
+		the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+	</aside>
+<?php include('templates/footer.php'); ?>

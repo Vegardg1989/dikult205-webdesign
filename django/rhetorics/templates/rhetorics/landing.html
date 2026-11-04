@@ -11,6 +11,7 @@
 <div class="demo-banner" role="note">
   <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), rebuilt in Django in 2026.
   Both sites are fictional exercises in persuasive web design and are not affiliated with any real organisation.
+  <a class="snap-link" href="#original">See the 2020 original</a> ·
   <a href="{% url 'rhetorics:landing' %}">About the assignment</a> ·
   <a href="https://www.vegardgundersen.com/projects">vegardgundersen.com</a> ·
   <a href="https://github.com/Vegardg1989/dikult205-webdesign">Code on GitHub</a>
@@ -41,10 +42,23 @@
     </tbody>
   </table>
   <h2>What changed in the rewrite</h2>
-  <p>The 2020 version was PHP with MySQL on the university's server, which no longer exists. This version is Python and Django and keeps the original layouts and stylesheets.
-  Two things were left out on purpose: the real organisations' logos (World 1 originally used the University of Chicago Crime Lab logo, and World 2 showed the NRA as a "partner"), so the live demo can't be mistaken for those organisations.</p>
+  <p><strong>About the restoration:</strong> parts of my original code are lost. Only the rough draft from April 2020 survived, because the final code on the university server was never saved. In 2026 I restored the work with help from Claude, Anthropic's AI assistant, using the screenshots in my exam portfolio and the login system from Retrobaser, which I wrote myself.</p>
+  <p>The 2020 version was PHP with MySQL on the university's server, which no longer exists. This version is Python and Django and keeps the original layouts and stylesheets: World 2 still has its menu at the bottom of the page, opened by the same small JavaScript file on phones.
+  The real organisations' logos are replaced with fictional ones of the same size: World 1 used the University of Chicago Crime Lab and Urban Labs, and World 2 used the Illinois State Rifle Association emblem and the NRA as a "partner". The demo therefore can't be mistaken for any of them. <a href="#original">The screenshots from my portfolio</a> show the sites as I submitted them.</p>
   <p>World 2 demo logins (data resets every 24 hours, last {{ demo_reset_at|date:"j M Y, H:i" }}):</p>
   <ul>{% for l in demo_logins %}<li>{{ l.role }}: <code>{{ l.email }}</code> / <code>{{ l.password }}</code></li>{% endfor %}</ul>
 </main>
+{% if snapshots %}{% load static %}
+<div id="original" class="snap-overlay" role="dialog" aria-label="The 2020 original">
+  <div class="snap-box">
+    <a class="snap-close" href="#">Close ✕</a>
+    <h2>As submitted in June 2020</h2>
+    {% for file, caption in snapshots %}
+    <figure><img src="{% static 'rhetorics/snapshots/' %}{{ file }}" alt="{{ caption }}" loading="lazy"><figcaption>{{ caption }}</figcaption></figure>
+    {% endfor %}
+    <p class="snap-note">{{ snapshot_note }}</p>
+  </div>
+</div>
+{% endif %}
 </body>
 </html>

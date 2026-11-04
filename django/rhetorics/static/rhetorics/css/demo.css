@@ -1,4 +1,4 @@
-/* Added in the 2026 Django rewrite: demo banner, messages, landing page and World 2 extras. */
+/* Added in the 2026 Django rewrite: demo banner, snapshot overlay, messages and World 2 extras. */
 .demo-banner {
   font-family: Arial, Helvetica, sans-serif;
   background: #111;
@@ -8,23 +8,47 @@
   line-height: 1.5;
 }
 .demo-banner a { color: #ffd54a; }
+.demo-banner .snap-link { font-weight: bold; }
+.snap-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.82); overflow-y: auto; padding: 2em 1em; }
+.snap-overlay:target { display: block; }
+.snap-box { max-width: 1200px; margin: 0 auto; background: #fff; padding: 1em 1.4em 1.4em; font-family: Arial, Helvetica, sans-serif; line-height: 1.5; }
+.snap-box h2 { margin: 0.2em 0 0.6em; }
+.snap-box figure { margin: 0 0 1.2em; }
+.snap-box img { width: 100%; height: auto; border: 1px solid #ccc; }
+.snap-box figcaption { font-size: 0.95em; color: #444; }
+.snap-note { font-size: 0.95em; background: #f4f4f4; padding: 0.6em 0.8em; border-left: 4px solid #888; }
+.snap-close { float: right; font-weight: bold; color: #111; }
 .demo-messages { list-style: none; margin: 0 0 1em; padding: 0; }
 .demo-messages li { font-family: Arial, Helvetica, sans-serif; line-height: 1.5; margin: 0.4em 0; padding: 0.5em 0.8em; background: #fff8d6; border-left: 5px solid #e0a800; }
 .demo-messages li.error { background: #fde2e1; border-color: #c62828; }
 .demo-messages li.success { background: #e3f6e5; border-color: #2e7d32; }
 .demo-note { font-style: italic; }
-.wordmark { grid-area: logo; display: block; text-align: center; text-decoration: none; color: inherit; font-family: 'Graduate', serif; font-size: 1.6em; line-height: 1.2; padding: 0.6em 0; }
-.wordmark small { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 0.5em; letter-spacing: 0.04em; }
-.news-post { border-bottom: 1px solid #ccc; padding-bottom: 1em; margin-bottom: 1.5em; line-height: 1.6; }
-.news-post img { max-width: 100%; height: auto; }
-.news-meta { font-size: 0.95em; color: #555; }
-.admin-actions a, .admin-actions button { margin-right: 0.8em; }
+/* World 1 header: own logo left, title centre, (fictional) parent organisation right */
+.w1 header { align-items: center; }
+.w1 .assosiates { grid-area: assosiates; text-align: center; }
+.w1 .assosiates img { width: 18em; max-width: 100%; height: auto; }
+.w1 .nav-links a { color: #fff; font-family: 'Graduate', serif; }
+.w1 .nav-links a:hover { color: #000; }
+@media screen and (min-width: 860px) {
+  .w1-home { grid-template-areas: "header header" "navigaton navigaton" "aside content" "footer footer"; }
+}
+.chart { font-family: Arial, Helvetica, sans-serif; margin: 1.5em 0; line-height: 1.4; }
+.chart h3 { margin: 0; font-size: 1.3em; }
+.chart .sub { color: #555; margin: 0.2em 0 0.8em; font-size: 1em; padding: 0; }
+.chart .row { display: grid; grid-template-columns: 6em 1fr; align-items: center; gap: 0.6em; margin: 0.35em 0; }
+.chart .bar { background: #7d2a4f; color: #fff; text-align: right; padding: 0.25em 0.5em; }
+.chart .src { font-size: 0.9em; color: #555; padding: 0; }
+/* World 2 */
 .cra-form label { display: block; margin-top: 0.8em; font-weight: bold; }
 .cra-form input[type=text], .cra-form input[type=email], .cra-form input[type=password], .cra-form textarea, .cra-form select { width: 100%; max-width: 36em; font-size: 1em; padding: 0.4em; }
 .cra-form textarea { min-height: 10em; }
-.cra-form button { margin-top: 1em; font-size: 1em; padding: 0.4em 1.2em; cursor: pointer; }
-.login-box { line-height: 1.5; border: 2px solid #333; padding: 0.8em 1em; margin-bottom: 1.5em; }
-.login-box table td { padding-right: 1em; }
+.cra-form button, .cra-form input[type=submit] { margin-top: 1em; font-size: 1em; padding: 0.4em 1.2em; cursor: pointer; font-family: 'Audiowide', cursive; background: gold; border: 2px solid #111; }
+.login-hints { line-height: 1.5; border: 2px dashed #999; padding: 0.6em 1em; margin-top: 1.5em; font-size: 0.95em; }
+.welcome-line { font-family: 'Audiowide', cursive; }
+.news-post { border-bottom: 1px solid #ccc; padding-bottom: 1em; margin-bottom: 1.5em; line-height: 1.6; }
+.news-post img { max-width: 100%; height: auto; }
+.news-meta { font-size: 0.95em; color: #555; }
+.admin-actions a { margin-right: 0.8em; }
 .range { border: 1px solid #ccc; padding: 0.5em 1em; margin-bottom: 1em; line-height: 1.6; }
 .stars-bar { display: inline-block; position: relative; font-size: 1.4em; letter-spacing: 0.1em; color: #ccc; line-height: 1; }
 .stars-bar span { position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap; color: #b8860b; }

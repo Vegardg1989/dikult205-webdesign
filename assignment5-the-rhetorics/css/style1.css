@@ -269,3 +269,15 @@ footer a:hover {
   }
 
 }
+
+/*************************************************************
+  *Added in the 2026 restoration: forms, messages and ranges*
+ *************************************************************/
+.cra-form label { display: block; margin-top: 0.8em; font-weight: bold; }
+.cra-form input[type=text], .cra-form input[type=email], .cra-form input[type=password],
+.cra-form textarea, .cra-form select { width: 100%; max-width: 36em; font-size: 1em; padding: 0.4em; }
+.cra-form button, .cra-form input[type=submit] { margin-top: 1em; font-family: 'Audiowide', cursive; background: gold; border: 2px solid #111; padding: 0.4em 1.2em; cursor: pointer; }
+.error { background: #fde2e1; border-left: 5px solid #c62828; padding: 0.5em 0.8em; }
+.notice { background: #e3f6e5; border-left: 5px solid #2e7d32; padding: 0.5em 0.8em; }
+.range, .media { border-bottom: 1px solid #ccc; padding-bottom: 1em; margin-bottom: 1.5em; }
+.media .img { max-width: 100%; height: auto; }

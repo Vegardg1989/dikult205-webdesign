@@ -1,0 +1,20 @@
+{% extends "rhetorics/world2/base.html" %}{% load static %}
+{% block title %}Signup{% endblock %}
+{% block content %}
+<main class="content-landingpage">
+  {% if messages %}<ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  <h2>Become a member</h2>
+  <p class="demo-note">The original used the same sign-up system as Retrobaser: field checks, a hashed password and an e-mailed activation link. Sign-up is switched off in the demo, so please use a demo login.</p>
+  <form class="cra-form" method="post">{% csrf_token %}
+    <label for="username">Name:</label><input type="text" name="username" id="username">
+    <label for="su-email">E-mail:</label><input type="email" name="email" id="su-email">
+    <label for="su-pass">Password:</label><input type="password" name="password" id="su-pass">
+    <label for="password_repeat">Repeat Password:</label><input type="password" name="password_repeat" id="password_repeat">
+    <input type="submit" value="Sign Up">
+  </form>
+</main>
+<aside class="aside-landingpage">
+  <img alt="{{ aside_alt|default:'A hunter with a cap aiming a rifle outdoors' }}" id="gunrange-landingpage" src="{% static 'rhetorics/pictures/' %}{{ aside_img|default:'range2.jpg' }}">
+  <p><q>A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+</aside>
+{% endblock %}

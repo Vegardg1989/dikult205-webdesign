@@ -9,7 +9,8 @@ class RhetoricsDemoTests(TestCase):
         return self.client.post(reverse("rhetorics:login"), {"email": email, "password": password})
 
     def test_pages_render(self):
-        for name in ["landing", "world1_home", "world1_research", "world2_home", "news", "ranges"]:
+        for name in ["landing", "world1_home", "world1_research", "world1_crime_reduction", "world2_home",
+                     "news", "ranges", "login", "signup", "forgot_password"]:
             self.assertEqual(self.client.get(reverse(f"rhetorics:{name}")).status_code, 200, name)
         self.assertEqual(NewsPost.objects.count(), 3)
 
@@ -44,3 +45,23 @@ class RhetoricsDemoTests(TestCase):
         self.assertEqual(r.status_code, 404)
         self.client.post(reverse("rhetorics:news_delete", args=[post.pk]))
         self.assertFalse(NewsPost.objects.filter(pk=post.pk).exists())
+
+    def test_world2_nav_and_snapshot(self):
+        r = self.client.get(reverse("rhetorics:world2_home"))
+        self.assertContains(r, 'id="craNavbar"')
+        self.assertContains(r, "nv.js")
+        self.assertContains(r, "snapshots/world2-home.jpg")
+        self.assertContains(r, "Not affiliated")
+        self.login()
+        r = self.client.get(reverse("rhetorics:world2_home"))
+        self.assertContains(r, "Log Out")
+        self.assertNotContains(r, ">Signup<")
+
+    def test_change_password_needs_login_and_keeps_demo_password(self):
+        self.client.get(reverse("rhetorics:landing"))
+        self.assertEqual(self.client.get(reverse("rhetorics:change_password")).status_code, 302)
+        self.login()
+        self.client.post(reverse("rhetorics:change_password"), {"password": "newpass1", "password_repeat": "newpass1"})
+        r = self.client.get(reverse("rhetorics:logout"))
+        self.assertEqual(self.login().status_code, 302)
+        self.assertContains(self.client.get(reverse("rhetorics:world2_home")), "Log Out")

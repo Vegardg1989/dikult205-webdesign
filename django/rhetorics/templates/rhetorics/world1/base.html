@@ -7,33 +7,47 @@
   <link href="{% static 'rhetorics/css/style.css' %}" rel="stylesheet">
   <link href="{% static 'rhetorics/css/demo.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Graduate&display=swap" rel="stylesheet">
-  <title>{% block title %}Home{% endblock %} · The Crime Lab Project (demo)</title>
+  <title>{% block title %}Home{% endblock %} · The Crime Lab Project (fictional demo)</title>
 </head>
 <body>
 <div class="demo-banner" role="note">
-  <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), rebuilt in Django in 2026.
-  Both sites are fictional exercises in persuasive web design and are not affiliated with any real organisation.
+  <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), restored and rebuilt in Django in 2026 with help from an AI assistant, because parts of the original code are lost.
+  Fictional student project. Not affiliated with, endorsed by or connected to any real organisation, university or company.
+  {% if snapshots %}<a class="snap-link" href="#original">See the 2020 original</a> ·{% endif %}
   <a href="{% url 'rhetorics:landing' %}">About the assignment</a> ·
   <a href="https://www.vegardgundersen.com/projects">vegardgundersen.com</a> ·
   <a href="https://github.com/Vegardg1989/dikult205-webdesign">Code on GitHub</a>
 </div>
-<div class="container-landingpage">
+<div class="container-landingpage w1 {% block layout %}{% endblock %}">
   <header>
-    <a class="wordmark" href="{% url 'rhetorics:world1_home' %}">THE CRIME LAB PROJECT<small>a fictional research lab · student project</small></a>
+    <a href="{% url 'rhetorics:world1_home' %}"><img alt="The Crime Lab Project: a lab flask plus a data network (fictional logo)" class="icon-header" src="{% static 'rhetorics/icons/crime-lab-logo.png' %}"></a>
     <section class="header-title"><h1>LEVERAGING SCIENCE TO SAVE LIVES</h1></section>
+    <aside class="assosiates"><img alt="Parent Organization: Metro Science (fictional)" src="{% static 'rhetorics/icons/parent-org.svg' %}"></aside>
   </header>
   <nav>
     <input id="menu-toggle" type="checkbox"> <label class="hamburger" for="menu-toggle"><img alt="Menu" src="{% static 'rhetorics/icons/hamburger.svg' %}"></label>
     <div class="nav-links">
-      <a href="{% url 'rhetorics:world1_home' %}">HOME</a> <a href="{% url 'rhetorics:world1_research' %}">RESEARCH</a> <a href="#contact">CONTACT US</a>
+      <a href="{% url 'rhetorics:world1_research' %}">RESEARCH</a> <a href="{% url 'rhetorics:world1_crime_reduction' %}">CRIME REDUCTION</a>
     </div>
   </nav>
   {% block content %}{% endblock %}
   <footer id="contact">
     <section class="box1"><h4>Contact Us</h4><p>A fictional lab, so there is no real phone number or e-mail.</p></section>
-    <section class="box2"><h4>About this page</h4><p>World 1 of "The Rhetorics", DIKULT205, University of Bergen, 2020.</p></section>
+    <section class="box2"><h4>About this page</h4><p>World 1 of "The Rhetorics", DIKULT205, University of Bergen, 2020. Fictional student project. Not affiliated with, endorsed by or connected to any real organisation, university or company.</p></section>
     <aside class="box3"><a href="{% url 'rhetorics:world2_home' %}">Visit World 2 →</a></aside>
   </footer>
 </div>
+{% if snapshots %}{% load static %}
+<div id="original" class="snap-overlay" role="dialog" aria-label="The 2020 original">
+  <div class="snap-box">
+    <a class="snap-close" href="#">Close ✕</a>
+    <h2>As submitted in June 2020</h2>
+    {% for file, caption in snapshots %}
+    <figure><img src="{% static 'rhetorics/snapshots/' %}{{ file }}" alt="{{ caption }}" loading="lazy"><figcaption>{{ caption }}</figcaption></figure>
+    {% endfor %}
+    <p class="snap-note">{{ snapshot_note }}</p>
+  </div>
+</div>
+{% endif %}
 </body>
 </html>

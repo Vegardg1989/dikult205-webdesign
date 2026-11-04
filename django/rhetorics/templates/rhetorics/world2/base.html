@@ -7,40 +7,62 @@
   <link href="{% static 'rhetorics/css/style1.css' %}" rel="stylesheet">
   <link href="{% static 'rhetorics/css/demo.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap&subset=latin-ext" rel="stylesheet">
-  <title>{% block title %}Home{% endblock %} · Chicago Rifle Association (demo)</title>
+  <script src="{% static 'rhetorics/js/nv.js' %}"></script>
+  <title>{% block title %}Home{% endblock %} · Chicago Rifle Association (fictional demo)</title>
 </head>
 <body>
 <div class="demo-banner" role="note">
-  <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), rebuilt in Django in 2026.
-  Both sites are fictional exercises in persuasive web design and are not affiliated with any real organisation.
+  <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), restored and rebuilt in Django in 2026 with help from an AI assistant, because parts of the original code are lost.
+  Fictional student project. Not affiliated with, endorsed by or connected to any real organisation, university or company.
+  {% if snapshots %}<a class="snap-link" href="#original">See the 2020 original</a> ·{% endif %}
   <a href="{% url 'rhetorics:landing' %}">About the assignment</a> ·
   <a href="https://www.vegardgundersen.com/projects">vegardgundersen.com</a> ·
   <a href="https://github.com/Vegardg1989/dikult205-webdesign">Code on GitHub</a>
 </div>
 <div class="container-landingpage">
   <header>
-    <a href="{% url 'rhetorics:world2_home' %}"><img alt="CRA logo: an eagle with stars and stripes" class="icon-header" src="{% static 'rhetorics/icons/chicagorifleorg.svg' %}"></a>
+    <a href="{% url 'rhetorics:world2_home' %}"><img alt="CRA logo with a fictional emblem" class="icon-header" src="{% static 'rhetorics/icons/icon-world2.svg' %}"></a>
     <section class="header-title">
       <h1>CHICAGO RIFLE ASSOCIATION</h1>
-      <p>Dedicated to education, safety training</p><span>and support of Chicago's firearm owners</span>
+      <p>Dedicated to education, safety training.</p><span>and support of Chicago's firearm owners</span>
     </section>
     <aside class="assosiates">
-      {% if member %}<h2>{{ member.name|upper }}</h2><p>{% if member.is_admin %}Admin{% else %}Member{% endif %} · <a href="{% url 'rhetorics:logout' %}">Log out</a></p>
-      {% else %}<h2>MEMBERS</h2><p><a href="{% url 'rhetorics:world2_home' %}#login">Log in</a></p>{% endif %}
+      <h2>OUR PARTNER</h2><img alt="Lakeshore Shooting Sports League (fictional)" class="assosiates-icons" src="{% static 'rhetorics/icons/partner.svg' %}">
     </aside>
   </header>
-  <nav class="navigaton-bar" id="craNavbar">
-    <a href="{% url 'rhetorics:world2_home' %}">CRA</a> <a href="{% url 'rhetorics:news' %}">NEWS</a> <a href="{% url 'rhetorics:ranges' %}">RANGES</a>
-    <a href="#contact">CONTACT US</a>
-    <a class="icon" href="#" onclick="navFunction(); return false;" aria-label="Menu">&#9776;</a>
-  </nav>
   {% block content %}{% endblock %}
   <footer id="contact">
     <section class="box1"><h4>Contact CRA</h4><p>A fictional association, so there is no real phone number or e-mail.</p></section>
-    <section class="box2"><h4>About this page</h4><p>World 2 of "The Rhetorics", DIKULT205, University of Bergen, 2020.</p></section>
+    <section class="box2"><h4>About this page</h4><p>World 2 of "The Rhetorics", DIKULT205, University of Bergen, 2020. Fictional student project. Not affiliated with, endorsed by or connected to any real organisation, university or company.</p></section>
     <aside class="box3"><a href="{% url 'rhetorics:world1_home' %}">Visit World 1 →</a></aside>
   </footer>
+  {% with request.resolver_match.url_name as here %}
+  <nav class="navigaton-bar" id="craNavbar">
+    <a {% if here == "world2_home" %}class="active" {% endif %}href="{% url 'rhetorics:world2_home' %}">CRA</a>
+    <a {% if here == "news" %}class="active" {% endif %}href="{% url 'rhetorics:news' %}">News</a>
+    <a {% if here == "ranges" %}class="active" {% endif %}href="{% url 'rhetorics:ranges' %}">Ranges</a>
+    {% if member %}
+      <a {% if here == "change_password" %}class="active" {% endif %}href="{% url 'rhetorics:change_password' %}">Change Password</a>
+      <a href="{% url 'rhetorics:logout' %}">Log Out</a>
+    {% else %}
+      <a {% if here == "signup" %}class="active" {% endif %}href="{% url 'rhetorics:signup' %}">Signup</a>
+      <a {% if here == "login" %}class="active" {% endif %}href="{% url 'rhetorics:login' %}">Login</a>
+    {% endif %}
+    <a class="icon" href="javascript:void(0);" onclick="navFunction()" aria-label="Menu">&#9776;</a>
+  </nav>
+  {% endwith %}
 </div>
-<script src="{% static 'rhetorics/js/nv.js' %}"></script>
+{% if snapshots %}{% load static %}
+<div id="original" class="snap-overlay" role="dialog" aria-label="The 2020 original">
+  <div class="snap-box">
+    <a class="snap-close" href="#">Close ✕</a>
+    <h2>As submitted in June 2020</h2>
+    {% for file, caption in snapshots %}
+    <figure><img src="{% static 'rhetorics/snapshots/' %}{{ file }}" alt="{{ caption }}" loading="lazy"><figcaption>{{ caption }}</figcaption></figure>
+    {% endfor %}
+    <p class="snap-note">{{ snapshot_note }}</p>
+  </div>
+</div>
+{% endif %}
 </body>
 </html>
