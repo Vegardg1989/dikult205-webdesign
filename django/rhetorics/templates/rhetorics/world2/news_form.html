@@ -1,0 +1,20 @@
+{% extends "rhetorics/world2/base.html" %}{% load static %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+<main class="content-landingpage">
+  {% if messages %}<ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  <h2>{{ heading }}</h2>
+  <form class="cra-form" method="post">{% csrf_token %}
+    <label for="title">Title</label><input type="text" id="title" name="title" maxlength="120" value="{{ post.title }}" required>
+    <label for="body">Text</label><textarea id="body" name="body" maxlength="3000" required>{{ post.body }}</textarea>
+    <label for="image">Picture</label>
+    <select id="image" name="image">{% for p in pictures %}<option value="{{ p }}"{% if p == post.image %} selected{% endif %}>{% if p %}{{ p }}{% else %}No picture{% endif %}</option>{% endfor %}</select>
+    <button type="submit">Publish</button>
+  </form>
+  <p><a href="{% url 'rhetorics:news' %}">Back to the news</a></p>
+</main>
+<aside class="aside-landingpage">
+  <img alt="{{ aside_alt|default:'A shooter aiming at a paper target on an indoor range' }}" id="gunrange-landingpage" src="{% static 'rhetorics/pictures/' %}{{ aside_img|default:'range2.jpg' }}">
+  <p><q>A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+</aside>
+{% endblock %}

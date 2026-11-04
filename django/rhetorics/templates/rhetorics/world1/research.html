@@ -1,0 +1,20 @@
+{% extends "rhetorics/world1/base.html" %}{% load static %}
+{% block title %}Research{% endblock %}
+{% block content %}
+<main class="content-landingpage">
+  <article>
+    <h2>A public health perspective on gun violence.</h2>
+    <p>Gun violence is a serious public health problem. Thousands are killed and harmed each year, children among them, as a recent story in the Chicago Tribune shows: a toddler was severely wounded as his parents struggled over a gun.</p>
+    <h2>Jobs change outcomes.</h2>
+    <p>In a randomised study of a Chicago summer jobs programme, teenagers who were offered a job were 43% less likely to be arrested for a violent crime than those who were not. Data like this is why we argue that jobs for young people are violence prevention.</p>
+    <h2>Heat and shootings.</h2>
+    <p>Shootings in Chicago peak on hot summer days. Why is still debated: some research suggests heat makes people more irritable and quicker to anger. We report the pattern and do not claim more than the data shows.</p>
+    <h2>Policing with precision.</h2>
+    <p>When the police can focus on the few places and people behind most shootings, they use their resources better. That is also why false reports, like the father's story of a gunman, cost more than they seem to.</p>
+  </article>
+</main>
+<aside class="aside-landingpage">
+  <img alt="Chart: U.S. gun deaths rose from 28,874 in 1999 to 39,773 in 2017" id="image-landingpage" src="{% static 'rhetorics/pictures/gunstats.jpeg' %}">
+  <ul><li>Data from the Centers for Disease Control and Prevention show that 39,773 people died from gunshot wounds in the United States in 2017. Chart: Statista (CC BY-ND).</li></ul>
+</aside>
+{% endblock %}

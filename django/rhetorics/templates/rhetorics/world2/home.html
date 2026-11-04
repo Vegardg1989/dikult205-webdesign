@@ -1,0 +1,32 @@
+{% extends "rhetorics/world2/base.html" %}{% load static %}
+{% block content %}
+<main class="content-landingpage">
+  {% if messages %}<ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  <article>
+    <h2>Welcome to the CRA</h2>
+    <p>We are here to support and protect the rights and freedoms that the amendments to the United States Constitution grant its citizens. Our goal is to preserve and protect the hunter's right to own and use firearms for sport, and to educate the public about rifle use.</p>
+    <p>We promote conservation and safe sport hunting as a wildlife management tool. We want to see the highest degree of sportsmanship and good fellowship. We help plan, build and preserve civilian shooting ranges.</p>
+    <p>Gun violence is a serious public health problem. Thousands are killed and harmed each year, children among them. That is why our association is dedicated to teaching citizens the lawful use and ownership of firearms.</p>
+    <p>We arrange safety courses for gun owners in the hope of preventing such tragedies in the future.</p>
+  </article>
+  <section class="login-box" id="login">
+    {% if member %}
+      <p>You are logged in as <strong>{{ member.name }}</strong> ({% if member.is_admin %}admin: you can write, edit and delete news{% else %}member: you can rate ranges{% endif %}). <a href="{% url 'rhetorics:logout' %}">Log out</a></p>
+    {% else %}
+      <h3>Member login</h3>
+      <form class="cra-form" method="post" action="{% url 'rhetorics:login' %}">{% csrf_token %}
+        <input type="hidden" name="next" value="{% url 'rhetorics:world2_home' %}">
+        <label for="email">E-mail</label><input type="email" id="email" name="email" autocomplete="username" required>
+        <label for="password">Password</label><input type="password" id="password" name="password" autocomplete="current-password" required>
+        <button type="submit">Log in</button>
+      </form>
+      <p>Demo logins:</p>
+      <table>{% for l in demo_logins %}<tr><td>{{ l.role }}</td><td><code>{{ l.email }}</code></td><td><code>{{ l.password }}</code></td></tr>{% endfor %}</table>
+    {% endif %}
+  </section>
+</main>
+<aside class="aside-landingpage">
+  <img alt="{{ aside_alt|default:'A shooter aiming at a paper target on an indoor range' }}" id="gunrange-landingpage" src="{% static 'rhetorics/pictures/' %}{{ aside_img|default:'range2.jpg' }}">
+  <p><q>A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+</aside>
+{% endblock %}

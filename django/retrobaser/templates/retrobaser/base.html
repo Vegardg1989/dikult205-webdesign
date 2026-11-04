@@ -1,0 +1,87 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{% static 'retrobaser/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'retrobaser/css/demo.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <title>{% block title %}Retrobaser{% endblock %} · Retrobaser demo</title>
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <strong>Live demo.</strong> Retrobaser was a PHP/MySQL pair project for DIKULT205 at the University of Bergen (2020).
+  This is my Django rewrite from 2026. The demo data resets every 24 hours.
+  <a href="https://www.vegardgundersen.com/projects">Back to vegardgundersen.com</a> ·
+  <a href="https://github.com/Vegardg1989/dikult205-webdesign">Code on GitHub</a>
+  <details{% if not member %} open{% endif %}>
+    <summary>Demo logins</summary>
+    <ul class="demo-logins">{% for l in demo_logins %}<li>{{ l.role }}: <code>{{ l.email }}</code> / <code>{{ l.password }}</code></li>{% endfor %}</ul>
+  </details>
+</div>
+<div class="container-body">
+  <header>
+    <div class="logo"><a href="{% url 'retrobaser:index' %}"><img id="logo-image" src="{% static 'retrobaser/icons/retrobaser.svg' %}" alt="Retrobaser"></a></div>
+    <div class="loginbox">
+      {% if member %}
+        <h1>Welcome {{ member.username }}</h1>
+        <p>{% if member.is_admin %}Logged in as admin{% else %}Logged in as member{% endif %}</p>
+      {% else %}
+        <form action="{% url 'retrobaser:login' %}" method="post">{% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="username">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="pass" autocomplete="current-password"><br>
+          <div class="login-nav"><button type="submit">Login</button></div>
+          <br>
+          <a href="{% url 'retrobaser:forgot_password' %}" class="forgotpassbutton">Forgot Password</a>
+        </form>
+      {% endif %}
+    </div>
+  </header>
+
+  <nav>
+    <input id="menu-toggle" type="checkbox">
+    <label class="hamburger" for="menu-toggle"><img alt="Menu" src="{% static 'retrobaser/icons/hamburger.svg' %}"></label>
+    <div class="nav-links">
+      <a href="{% url 'retrobaser:index' %}">Home</a>
+      <a href="{% url 'retrobaser:games' %}">Retro Games</a>
+      <a href="{% url 'retrobaser:board' %}">Discuss/Suggest</a>
+      {% if member %}
+        {% if member.is_admin %}
+          <a href="{% url 'retrobaser:admin_games' %}">Modify Games</a>
+          <a href="{% url 'retrobaser:admin_users' %}">User Accounts</a>
+        {% endif %}
+        <a href="{% url 'retrobaser:change_password' %}">Change Password</a>
+        <a href="{% url 'retrobaser:logout' %}">Log Out</a>
+      {% else %}
+        <a href="{% url 'retrobaser:signup' %}">Sign Up</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div style="grid-area: content;">
+  {% if messages %}
+  <ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>
+  {% endif %}
+  {% block content %}{% endblock %}
+  </div>
+
+  <footer>
+    <section class="box1">
+      <h4>Retrobaser</h4>
+      <p>Made by student 108 and student 110, DIKULT205, spring 2020.</p>
+    </section>
+    <section class="box2">
+      <h4>This demo</h4>
+      <p>Rebuilt in Python and Django in 2026. Data last reset {{ demo_reset_at|date:"j M Y, H:i" }}.</p>
+    </section>
+    <aside class="box3">
+      <a href="https://github.com/Vegardg1989/dikult205-webdesign/tree/main/assignment8-retrobaser">Original PHP code</a>
+    </aside>
+  </footer>
+</div>
+</body>
+</html>

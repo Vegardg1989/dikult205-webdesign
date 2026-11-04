@@ -1,0 +1,9 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Edit a game{% endblock %}
+{% block content %}
+<div class="forms-container"><section class="forms-section">
+  <h1>Edit a Game</h1>
+  {% include "retrobaser/_game_form.html" %}
+  <p><a href="{% url 'retrobaser:admin_games' %}">Back to the games</a></p>
+</section></div>
+{% endblock %}

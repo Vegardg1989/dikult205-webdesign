@@ -1,0 +1,46 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{% static 'rhetorics/css/style1.css' %}" rel="stylesheet">
+  <link href="{% static 'rhetorics/css/demo.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap&subset=latin-ext" rel="stylesheet">
+  <title>{% block title %}Home{% endblock %} · Chicago Rifle Association (demo)</title>
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), rebuilt in Django in 2026.
+  Both sites are fictional exercises in persuasive web design and are not affiliated with any real organisation.
+  <a href="{% url 'rhetorics:landing' %}">About the assignment</a> ·
+  <a href="https://www.vegardgundersen.com/projects">vegardgundersen.com</a> ·
+  <a href="https://github.com/Vegardg1989/dikult205-webdesign">Code on GitHub</a>
+</div>
+<div class="container-landingpage">
+  <header>
+    <a href="{% url 'rhetorics:world2_home' %}"><img alt="CRA logo: an eagle with stars and stripes" class="icon-header" src="{% static 'rhetorics/icons/chicagorifleorg.svg' %}"></a>
+    <section class="header-title">
+      <h1>CHICAGO RIFLE ASSOCIATION</h1>
+      <p>Dedicated to education, safety training</p><span>and support of Chicago's firearm owners</span>
+    </section>
+    <aside class="assosiates">
+      {% if member %}<h2>{{ member.name|upper }}</h2><p>{% if member.is_admin %}Admin{% else %}Member{% endif %} · <a href="{% url 'rhetorics:logout' %}">Log out</a></p>
+      {% else %}<h2>MEMBERS</h2><p><a href="{% url 'rhetorics:world2_home' %}#login">Log in</a></p>{% endif %}
+    </aside>
+  </header>
+  <nav class="navigaton-bar" id="craNavbar">
+    <a href="{% url 'rhetorics:world2_home' %}">CRA</a> <a href="{% url 'rhetorics:news' %}">NEWS</a> <a href="{% url 'rhetorics:ranges' %}">RANGES</a>
+    <a href="#contact">CONTACT US</a>
+    <a class="icon" href="#" onclick="navFunction(); return false;" aria-label="Menu">&#9776;</a>
+  </nav>
+  {% block content %}{% endblock %}
+  <footer id="contact">
+    <section class="box1"><h4>Contact CRA</h4><p>A fictional association, so there is no real phone number or e-mail.</p></section>
+    <section class="box2"><h4>About this page</h4><p>World 2 of "The Rhetorics", DIKULT205, University of Bergen, 2020.</p></section>
+    <aside class="box3"><a href="{% url 'rhetorics:world1_home' %}">Visit World 1 →</a></aside>
+  </footer>
+</div>
+<script src="{% static 'rhetorics/js/nv.js' %}"></script>
+</body>
+</html>

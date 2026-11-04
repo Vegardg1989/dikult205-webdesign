@@ -1,0 +1,12 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Discuss/Suggest{% endblock %}
+{% block content %}
+<section class="container-comment-section">
+  <div class="comment-section">
+    <h1>Discuss or suggest a game</h1>
+    <p>Which retro game should be on Retrobaser next? The admins read every suggestion.</p>
+    {% include "retrobaser/_comment_form.html" with label="Your suggestion or comment" %}
+    {% include "retrobaser/_comment_list.html" with edit_url="retrobaser:edit_board_comment" %}
+  </div>
+</section>
+{% endblock %}

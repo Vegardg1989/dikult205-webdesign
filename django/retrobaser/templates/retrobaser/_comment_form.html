@@ -1,0 +1,8 @@
+{% if member %}
+<form method="post">{% csrf_token %}
+  <input type="hidden" name="action" value="comment">
+  <label for="comment">{{ label }}</label>
+  <textarea id="comment" name="comment" maxlength="500" required></textarea>
+  <button type="submit" class="commentButton">Comment</button>
+</form>
+{% else %}<p class="demo-note">Log in to write a comment.</p>{% endif %}

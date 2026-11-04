@@ -1,0 +1,23 @@
+{% extends "rhetorics/world2/base.html" %}{% load static %}
+{% block title %}News{% endblock %}
+{% block content %}
+<main class="content-landingpage">
+  {% if messages %}<ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  <h2>Headline News</h2>
+  {% if member.is_admin %}<p class="admin-actions"><a href="{% url 'rhetorics:news_new' %}">+ Write a news post</a></p>{% endif %}
+  {% for post in posts %}
+  <article class="news-post">
+    <h3>{{ post.title }}</h3>
+    <p class="news-meta">{{ post.created|date:"F j, Y" }}{% if post.author %} · {{ post.author.name }}{% endif %}</p>
+    {% if post.image %}<img src="{% static 'rhetorics/pictures/' %}{{ post.image }}" alt="{{ post.image_alt }}">{% endif %}
+    {{ post.body|linebreaks }}
+    {% if member.is_admin %}<p class="admin-actions"><a href="{% url 'rhetorics:news_edit' post.pk %}">Edit</a> <a href="{% url 'rhetorics:news_delete' post.pk %}">Delete</a></p>{% endif %}
+  </article>
+  {% empty %}<p>No news yet.</p>{% endfor %}
+  {% if not member.is_admin %}<p class="demo-note">Log in as the admin to write, edit and delete news.</p>{% endif %}
+</main>
+{% with aside_img="cons.jpg" aside_alt="We the People from the U.S. Constitution seen through a magnifying glass" %}<aside class="aside-landingpage">
+  <img alt="{{ aside_alt|default:'A shooter aiming at a paper target on an indoor range' }}" id="gunrange-landingpage" src="{% static 'rhetorics/pictures/' %}{{ aside_img|default:'range2.jpg' }}">
+  <p><q>A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+</aside>{% endwith %}
+{% endblock %}

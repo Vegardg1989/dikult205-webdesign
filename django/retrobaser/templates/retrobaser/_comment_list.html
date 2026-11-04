@@ -1,0 +1,7 @@
+{% for c in comments %}
+<div class="commentBox">
+  <p>{{ c.member.username }}<br>{{ c.created|date:"Y-m-d H:i" }}<br>{{ c.text|linebreaksbr }}</p>
+  {% if member and member.pk == c.member_id %}<form class="commentEditButton" method="get" action="{% url edit_url c.pk %}"><button type="submit">Edit</button></form>{% endif %}
+  {% if member.is_admin %}<form class="commentDeleteButton" method="post">{% csrf_token %}<input type="hidden" name="action" value="delete-comment"><input type="hidden" name="cid" value="{{ c.pk }}"><button type="submit">Delete</button></form>{% endif %}
+</div>
+{% empty %}<p>No comments yet.</p>{% endfor %}

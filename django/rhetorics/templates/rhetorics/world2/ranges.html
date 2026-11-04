@@ -1,0 +1,25 @@
+{% extends "rhetorics/world2/base.html" %}{% load static %}
+{% block title %}Ranges{% endblock %}
+{% block content %}
+<main class="content-landingpage">
+  {% if messages %}<ul class="demo-messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  <h2>Gun ranges rated by our members</h2>
+  {% for r, mine in rows %}
+  <section class="range">
+    <h3>{{ r.name }}</h3>
+    <p>{{ r.area }}. {{ r.description }}</p>
+    <p>{% with avg=r.avg_rating %}{% if avg %}<span class="stars-bar" aria-hidden="true">★★★★★<span style="width: {{ r.star_percent }}%">★★★★★</span></span> {{ avg }} of 5 ({{ r.ratings.all|length }} rating{{ r.ratings.all|length|pluralize }}){% else %}No ratings yet{% endif %}{% endwith %}</p>
+    {% if member %}
+      <p>Your rating:
+      {% for n in "12345" %}<form class="rate-form" method="post">{% csrf_token %}<input type="hidden" name="range" value="{{ r.pk }}"><input type="hidden" name="stars" value="{{ n }}"><button type="submit" class="{% if not mine or n|add:0 > mine %}off{% endif %}" title="Give {{ n }} star{{ n|pluralize }}" aria-label="Give {{ n }} star{{ n|pluralize }}">★</button></form>{% endfor %}
+      </p>
+    {% endif %}
+  </section>
+  {% endfor %}
+  {% if not member %}<p class="demo-note">Log in as a member to rate the ranges.</p>{% endif %}
+</main>
+{% with aside_img="range1.jpg" %}<aside class="aside-landingpage">
+  <img alt="{{ aside_alt|default:'A shooter aiming at a paper target on an indoor range' }}" id="gunrange-landingpage" src="{% static 'rhetorics/pictures/' %}{{ aside_img|default:'range2.jpg' }}">
+  <p><q>A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.</q></p><span>The Second Amendment</span>
+</aside>{% endwith %}
+{% endblock %}

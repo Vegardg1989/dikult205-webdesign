@@ -1,0 +1,15 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Edit a user{% endblock %}
+{% block content %}
+<div class="forms-container"><section class="forms-section">
+  <h1>Edit a User</h1>
+  {% if user.protected %}<p class="demo-note">This is a shared demo login. You can change the username, but not the e-mail or role.</p>{% endif %}
+  <form method="post">{% csrf_token %}
+    <label for="eu-name">Username:</label><input type="text" name="username" id="eu-name" value="{{ user.username }}" maxlength="40" required>
+    <label for="eu-email">E-mail:</label><input type="email" name="email" id="eu-email" value="{{ user.email }}" required>
+    <label><input type="checkbox" name="is_admin"{% if user.is_admin %} checked{% endif %}> Admin</label><br>
+    <input type="submit" value="Submit" class="SubmitGame-Button">
+  </form>
+  <p><a href="{% url 'retrobaser:admin_users' %}">Back to the users</a></p>
+</section></div>
+{% endblock %}

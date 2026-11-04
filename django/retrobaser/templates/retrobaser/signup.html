@@ -1,0 +1,15 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Create an account{% endblock %}
+{% block content %}
+<div class="forms-container"><section class="forms-section">
+  <h1>Sign Up</h1>
+  <p class="demo-note">In the original, this form checked every field, stored the password as a hash and e-mailed an activation link. Sign-up is switched off in the demo, so use one of the demo logins at the top of the page.</p>
+  <form method="post">{% csrf_token %}
+    <label for="username">Username:</label><input type="text" name="username" id="username">
+    <label for="su-email">E-mail:</label><input type="email" name="email" id="su-email">
+    <label for="su-pass">Password:</label><input type="password" name="password" id="su-pass">
+    <label for="password_repeat">Repeat Password:</label><input type="password" name="password_repeat" id="password_repeat">
+    <input type="submit" value="Sign Up" class="SignUp-Button">
+  </form>
+</section></div>
+{% endblock %}

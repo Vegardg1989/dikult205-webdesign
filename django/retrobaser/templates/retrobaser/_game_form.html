@@ -1,0 +1,8 @@
+<form method="post">{% csrf_token %}
+  <label for="game_name">Game Title:</label><input id="game_name" name="game_name" type="text" maxlength="80" value="{{ game.name|default:'' }}" placeholder="Game Title">
+  <label for="game_description">Short Description:</label><textarea id="game_description" name="game_description" maxlength="200" placeholder="Short Description for Retro Games list...">{{ game.short_description|default:'' }}</textarea>
+  <label for="content">Long Description:</label><textarea id="content" name="content" maxlength="2000" placeholder="Long Description for the individual game...">{{ game.content|default:'' }}</textarea>
+  <label for="game_developer">Game Developer:</label><input id="game_developer" name="game_developer" type="text" maxlength="80" value="{{ game.developer|default:'' }}" placeholder="Game Developer">
+  <label for="game_release_date">Release Date:</label><input id="game_release_date" name="game_release_date" type="date" value="{{ game.release_date|date:'Y-m-d' }}"><br>
+  <input type="submit" value="Submit Game" class="SubmitGame-Button"><br>
+</form>

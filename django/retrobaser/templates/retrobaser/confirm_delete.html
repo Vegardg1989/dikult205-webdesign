@@ -1,0 +1,14 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Delete a {{ kind }}{% endblock %}
+{% block content %}
+<div class="forms-container"><section class="forms-section">
+  <h1>Delete a {{ kind|capfirst }}</h1>
+  <form method="post">{% csrf_token %}
+    <h3>Name: {{ thing }}</h3>
+    <p>Are you sure you want to delete this {{ kind }}?</p>
+    <label><input class="radioButton" type="radio" name="sure" value="Yes"> Yes</label>
+    <label><input class="radioButton" type="radio" name="sure" value="No" checked> No</label>
+    <input type="submit" value="Submit" class="deleteuserButton">
+  </form>
+</section></div>
+{% endblock %}

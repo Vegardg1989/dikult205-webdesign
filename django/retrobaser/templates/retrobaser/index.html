@@ -1,0 +1,24 @@
+{% extends "retrobaser/base.html" %}{% load static %}
+{% block content %}
+<div class="content-landingpage">
+  <section class="information-landingpage">
+    <h2>Welcome to Retrobaser!</h2>
+    <p class="welcome">
+      We here at Retrobaser give you the option to add your favorite games from the retro era.
+      It is community-driven, meaning the input of our users is important to make the site grow.
+      After signing up you can go to the discussion section and suggest games you want to have on Retrobaser.
+      The admins will then have a look, and if it is a suitable retro game, we will add it to the website.
+      We have already added several games. You can rate them and give them a comment: why do you like it, why don't you?
+      Once again, welcome to the newly established Retrobaser!
+    </p>
+    <p class="madeby">Made by student 108 and student 110.</p>
+  </section>
+  <div class="aside-landingpage">
+    <video width="560" height="315" controls preload="metadata">
+      <source src="{% static 'retrobaser/videos/lotus2.mp4' %}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="video-text">Intro for the retro game Lotus Turbo Challenge 2</p>
+  </div>
+</div>
+{% endblock %}

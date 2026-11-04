@@ -1,0 +1,21 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}User accounts{% endblock %}
+{% block content %}
+<main class="container-viewusers"><section class="content-viewusers">
+  <h1>Current Users</h1>
+  <table>
+    <thead><tr><th>Edit</th><th>Delete</th>
+      <th><a href="?sort=un">Username</a></th><th><a href="?sort=em">E-mail</a></th>
+      <th><a href="?sort=rd">Date Registered</a></th><th>Role</th></tr></thead>
+    <tbody>
+    {% for u in users %}
+      <tr><td><a href="{% url 'retrobaser:edit_user' u.pk %}">Edit</a></td>
+        <td>{% if u.protected %}–{% else %}<a class="delete-account" href="{% url 'retrobaser:delete_user' u.pk %}">Delete</a>{% endif %}</td>
+        <td>{{ u.username }}</td><td>{{ u.email }}</td><td>{{ u.registered_at|date:"M j, Y" }}</td>
+        <td>{% if u.is_admin %}Admin{% else %}Member{% endif %}{% if u.protected %} (demo login){% endif %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% include "retrobaser/_pager.html" with pg=users %}
+</section></main>
+{% endblock %}

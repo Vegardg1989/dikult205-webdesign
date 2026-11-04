@@ -1,0 +1,1 @@
+{% load static %}{% with avg=game.avg_rating %}{% if avg %}<p class="rating">Rating: <img src="{% static 'retrobaser/stars/' %}{{ game.star_image }}" alt="{{ avg }} stars" class="stars"> ({{ avg }})</p>{% else %}<p>(No rating yet)</p>{% endif %}{% endwith %}

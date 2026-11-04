@@ -1,0 +1,50 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{% static 'rhetorics/css/demo.css' %}" rel="stylesheet">
+  <title>The Rhetorics · live demo</title>
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <strong>Live demo of a student project.</strong> Assignment 5 in DIKULT205 at the University of Bergen (2020), rebuilt in Django in 2026.
+  Both sites are fictional exercises in persuasive web design and are not affiliated with any real organisation.
+  <a href="{% url 'rhetorics:landing' %}">About the assignment</a> ·
+  <a href="https://www.vegardgundersen.com/projects">vegardgundersen.com</a> ·
+  <a href="https://github.com/Vegardg1989/dikult205-webdesign">Code on GitHub</a>
+</div>
+<main class="landing">
+  <h1>The Rhetorics: one news story, two persuasive websites</h1>
+  <p>The task in DIKULT205 was to take one real news story and build two websites ("worlds") that use the same facts to persuade two opposing audiences, then write a rhetorical analysis of both.</p>
+  <p>The story: in January 2020 the Chicago Tribune reported that a one-year-old was badly wounded while his parents fought over a gun. The father first told the hospital that a gunman had fired at him and hit the boy.</p>
+  <div class="worlds">
+    <section class="world">
+      <h2>World 1: The Crime Lab Project</h2>
+      <p>A research lab that argues with data: youth jobs and precision policing reduce gun violence. Logos and ethos: statistics, charts and the credibility of research.</p>
+      <p><a href="{% url 'rhetorics:world1_home' %}">Open World 1 →</a></p>
+    </section>
+    <section class="world">
+      <h2>World 2: Chicago Rifle Association</h2>
+      <p>A gun owners' association that argues from the Second Amendment. Pathos: the eagle, the stars and stripes, and freedom. Members log in and rate ranges, and admins write the news.</p>
+      <p><a href="{% url 'rhetorics:world2_home' %}">Open World 2 →</a></p>
+    </section>
+  </div>
+  <h2>How each world uses the facts</h2>
+  <table>
+    <thead><tr><th>Fact from the article</th><th>The Crime Lab Project</th><th>Chicago Rifle Association</th></tr></thead>
+    <tbody>
+      <tr><td>The child was wounded as the parents fought over a gun.</td><td>Part of a larger urban problem that data on jobs and policing can help solve.</td><td>The parents still have the right to bear arms. Gun control would limit everyone's freedom.</td></tr>
+      <tr><td>The boy survived in serious but stable condition.</td><td>Links the case to the lab's own founding story: acting is better than ignoring the problem.</td><td>Accidents happen every day. The answer is education, safe storage and mental health support.</td></tr>
+      <tr><td>The father lied about a gunman.</td><td>False reports waste police resources that targeted policing depends on.</td><td>Being a law-abiding citizen is what protects the right to keep and bear arms.</td></tr>
+    </tbody>
+  </table>
+  <h2>What changed in the rewrite</h2>
+  <p>The 2020 version was PHP with MySQL on the university's server, which no longer exists. This version is Python and Django and keeps the original layouts and stylesheets.
+  Two things were left out on purpose: the real organisations' logos (World 1 originally used the University of Chicago Crime Lab logo, and World 2 showed the NRA as a "partner"), so the live demo can't be mistaken for those organisations.</p>
+  <p>World 2 demo logins (data resets every 24 hours, last {{ demo_reset_at|date:"j M Y, H:i" }}):</p>
+  <ul>{% for l in demo_logins %}<li>{{ l.role }}: <code>{{ l.email }}</code> / <code>{{ l.password }}</code></li>{% endfor %}</ul>
+</main>
+</body>
+</html>

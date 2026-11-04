@@ -1,0 +1,28 @@
+{% extends "retrobaser/base.html" %}{% load static %}
+{% block title %}{{ game.name }}{% endblock %}
+{% block content %}
+<div class="container-games">
+<div class="content-games">
+  <div id="content">
+    {% for img in game.images.all %}
+    <div class="img_div"><img class="game-image" src="{% static 'retrobaser/images/' %}{{ img.filename }}" alt="{{ img.description }}"><p>{{ img.description }}</p></div>
+    {% endfor %}
+    {% if member.is_admin %}<p class="demo-note">In the original, admins could upload images here. Uploads are switched off in the demo.</p>{% endif %}
+  </div>
+  <article>
+    <h2>{{ game.name }}</h2>
+    <p>{{ game.content }} {{ game.developer }}, {{ game.release_date|date:"Y" }}.</p>
+    {% include "retrobaser/_stars.html" %}
+    {% include "retrobaser/_rate.html" %}
+  </article>
+  <section class="container-comment-section">
+    <div class="comment-section">
+      <h2>Comments</h2>
+      {% include "retrobaser/_comment_form.html" with label="What do you think of the game?" %}
+      {% include "retrobaser/_comment_list.html" with edit_url="retrobaser:edit_game_comment" %}
+    </div>
+  </section>
+  <p><a class="gamebutton" href="{% url 'retrobaser:games' %}">Back to the list</a></p>
+</div>
+</div>
+{% endblock %}

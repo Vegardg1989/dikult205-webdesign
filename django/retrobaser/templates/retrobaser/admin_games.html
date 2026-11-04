@@ -1,0 +1,19 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Modify games{% endblock %}
+{% block content %}
+<main class="container-viewusers"><section class="content-viewusers">
+  <h1>Current Games</h1>
+  <table>
+    <thead><tr><th>Edit</th><th>Delete</th><th>Game Title</th><th>Developer</th><th>Released</th></tr></thead>
+    <tbody>
+    {% for g in games %}
+      <tr><td><a href="{% url 'retrobaser:edit_game' g.pk %}">Edit</a></td><td><a class="delete-account" href="{% url 'retrobaser:delete_game' g.pk %}">Delete</a></td>
+        <td>{{ g.name }}</td><td>{{ g.developer }}</td><td>{{ g.release_date|date:"Y" }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% include "retrobaser/_pager.html" with pg=games %}
+  <h1>Add Game</h1>
+  {% include "retrobaser/_game_form.html" with game=None %}
+</section></main>
+{% endblock %}

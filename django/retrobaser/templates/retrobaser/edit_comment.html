@@ -1,0 +1,12 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}Edit comment{% endblock %}
+{% block content %}
+<div class="forms-container"><section class="forms-section">
+  <h1>Edit comment</h1>
+  <form method="post">{% csrf_token %}
+    <textarea name="comment" maxlength="500" required aria-label="Comment">{{ comment.text }}</textarea>
+    <button type="submit" class="commentButton">Save</button>
+  </form>
+  <p><a href="{{ back_url }}">Cancel</a></p>
+</section></div>
+{% endblock %}

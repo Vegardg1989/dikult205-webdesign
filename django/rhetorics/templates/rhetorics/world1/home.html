@@ -1,0 +1,15 @@
+{% extends "rhetorics/world1/base.html" %}{% load static %}
+{% block content %}
+<main class="content-landingpage">
+  <article>
+    <h2>Working with the community for over a decade.</h2>
+    <p>For more than ten years the lab has worked closely with civic and community leaders to design and test programmes that reduce crime and violence in the Chicago area. It started with a tragedy: a student at our university was murdered in a robbery.</p>
+    <p>A recent story in the Chicago Tribune, where a toddler was wounded while his parents fought over a gun, reminds us why the work matters. We will keep doing research and working with the community to prevent such incidents.</p>
+    <p>Gun violence affects whole communities across the city, but a relatively small group of people is disproportionately involved. They are often young men who have experienced trauma, have left school and have few job opportunities. They are central to reducing crime and making the city safer.</p>
+    <p><a href="{% url 'rhetorics:world1_research' %}">Read about our research →</a></p>
+  </article>
+</main>
+<aside class="aside-landingpage">
+  <img alt="The Cloud Gate sculpture in Chicago's Millennium Park at dusk" id="image-landingpage" src="{% static 'rhetorics/pictures/chicago1.jpg' %}">
+</aside>
+{% endblock %}

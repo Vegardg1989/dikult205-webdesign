@@ -1,0 +1,29 @@
+{% extends "retrobaser/base.html" %}
+{% block title %}List of Retro Games{% endblock %}
+{% block content %}
+<div class="container-rating">
+<section class="content-rating">
+  <h1>Click your choice of game for more information on the game</h1>
+  <form action="" method="get">
+    <select name="sort" class="sortlist" aria-label="Sort games">
+      <option value="title-ascending"{% if sort == "title-ascending" %} selected{% endif %}>Alphabetically: A-Z</option>
+      <option value="title-descending"{% if sort == "title-descending" %} selected{% endif %}>Alphabetically: Z-A</option>
+      <option value="created-descending"{% if sort == "created-descending" %} selected{% endif %}>Date: New to Old</option>
+      <option value="created-ascending"{% if sort == "created-ascending" %} selected{% endif %}>Date: Old to New</option>
+    </select>
+    <input type="submit" value="Sort Retro Games" class="sortbutton">
+  </form>
+  {% for game in games %}
+  <article>
+    <h2><a href="{% url 'retrobaser:game_detail' game.pk %}" class="gamebutton">{{ game.name }}</a></h2>
+    <p>{{ game.short_description }}, {{ game.developer }}, {{ game.release_date|date:"Y" }}</p>
+    {% include "retrobaser/_stars.html" %}
+    {% include "retrobaser/_rate.html" %}
+  </article>
+  {% empty %}
+  <p>No games yet.</p>
+  {% endfor %}
+  {% if not member %}<p class="demo-note">Log in to rate games.</p>{% endif %}
+</section>
+</div>
+{% endblock %}

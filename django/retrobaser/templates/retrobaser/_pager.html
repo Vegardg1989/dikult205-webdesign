@@ -1,0 +1,5 @@
+{% if pg.paginator.num_pages > 1 %}<p class="pager">
+{% if pg.has_previous %}<a href="?page={{ pg.previous_page_number }}{% if sort %}&amp;sort={{ sort }}{% endif %}">Previous</a>{% endif %}
+{% for n in pg.paginator.page_range %}{% if n == pg.number %}<span>{{ n }}</span>{% else %}<a href="?page={{ n }}{% if sort %}&amp;sort={{ sort }}{% endif %}">{{ n }}</a>{% endif %}{% endfor %}
+{% if pg.has_next %}<a href="?page={{ pg.next_page_number }}{% if sort %}&amp;sort={{ sort }}{% endif %}">Next</a>{% endif %}
+</p>{% endif %}

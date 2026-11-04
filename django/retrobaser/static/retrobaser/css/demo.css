@@ -1,0 +1,22 @@
+/* Added in the 2026 Django rewrite: demo banner, messages and small fixes. */
+.demo-banner {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #111;
+  color: #f5f5f5;
+  padding: 0.6em 1em;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.demo-banner a { color: #ffd54a; }
+.demo-banner details { margin-top: 0.3em; }
+.demo-banner summary { cursor: pointer; color: #ffd54a; }
+.demo-logins { margin: 0.3em 0 0; padding-left: 1.2em; }
+.demo-banner p, .demo-banner li { font-size: 1em; padding: 0; }
+.demo-messages { list-style: none; margin: 0; padding: 0 1em; }
+.demo-messages li { font-family: Arial, Helvetica, sans-serif; margin: 0.5em 0; padding: 0.5em 0.8em; background: #fff8d6; border-left: 5px solid #e0a800; }
+.demo-messages li.error { background: #fde2e1; border-color: #c62828; }
+.demo-messages li.success { background: #e3f6e5; border-color: #2e7d32; }
+.demo-note { font-style: italic; }
+.pager a, .pager span { margin-right: 0.6em; }
+.game-image { max-width: 100%; height: auto; }
+video { max-width: 100%; height: auto; }
